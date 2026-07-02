@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>给春尤分享：楚哥闭环课 × 我的闭环链条</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: #f7f6f3;
+    color: #1a1a1a;
+    line-height: 1.7;
+    font-size: 14px;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  /* ── Hero ── */
+  .hero {
+    background: #3C3489;
+    color: #fff;
+    padding: 56px 24px 40px;
+    text-align: center;
+  }
+  .hero-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.85);
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+  }
+  .hero h1 {
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.45;
+    margin-bottom: 16px;
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-sub {
+    font-size: 13px;
+    opacity: 0.7;
+    margin-bottom: 24px;
+  }
+  .hero-core {
+    background: rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 16px 20px;
+    max-width: 580px;
+    margin: 0 auto;
+    font-size: 13px;
+    line-height: 1.75;
+    text-align: left;
+    border: 0.5px solid rgba(255,255,255,0.2);
+  }
+  .hero-core strong { color: #FAC775; font-weight: 500; }
+
+  /* ── Nav tabs ── */
+  .nav-wrap {
+    background: #fff;
+    border-bottom: 0.5px solid #e5e4e0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-tabs {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+  .nav-tabs::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    white-space: nowrap;
+    padding: 13px 18px;
+    font-size: 13px;
+    color: #888;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    font-family: inherit;
+  }
+  .tab-btn:hover { color: #3C3489; }
+  .tab-btn.active { color: #3C3489; border-bottom-color: #3C3489; font-weight: 500; }
+
+  /* ── Main layout ── */
+  .main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 32px 20px 80px;
+  }
+
+  /* ── Sections ── */
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* ── Cards ── */
+  .card {
+    background: #fff;
+    border-radius: 12px;
+    border: 0.5px solid #e5e4e0;
+    padding: 20px 22px;
+    margin-bottom: 16px;
+  }
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .icon-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .card h3 { font-size: 15px; font-weight: 500; }
+  .card p { font-size: 13px; color: #444; line-height: 1.75; }
+
+  /* ── Flow chain ── */
+  .flow {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 14px 0;
+  }
+  .flow-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .flow-line {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    width: 20px;
+  }
+  .flow-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #534AB7;
+    margin-top: 5px;
+  }
+  .flow-connector {
+    width: 1.5px;
+    background: #CECBF6;
+    flex: 1;
+    min-height: 12px;
+    margin: 2px 0;
+  }
+  .flow-text {
+    font-size: 13px;
+    color: #333;
+    padding: 2px 0 10px;
+    line-height: 1.6;
+  }
+  .flow-arrow {
+    font-size: 11px;
+    color: #7F77DD;
+    margin-left: 4px;
+  }
+
+  /* ── Big quote ── */
+  .quote-block {
+    background: #EEEDFE;
+    border-left: 3px solid #534AB7;
+    border-radius: 0 10px 10px 0;
+    padding: 16px 18px;
+    margin: 16px 0;
+    font-size: 14px;
+    line-height: 1.8;
+    color: #26215C;
+  }
+  .quote-block strong { font-weight: 500; }
+
+  /* ── Compare table ── */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 14px 0;
+  }
+  @media (max-width: 520px) { .compare-grid { grid-template-columns: 1fr; } }
+  .cg-item {
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .cg-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+  .cg-content { font-size: 13px; line-height: 1.7; }
+  .cg-chu { background: #EEEDFE; }
+  .cg-chu .cg-label { color: #534AB7; }
+  .cg-me { background: #E1F5EE; }
+  .cg-me .cg-label { color: #0F6E56; }
+
+  /* ── Funnel viz ── */
+  .funnel {
+    margin: 16px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+  }
+  .funnel-tier {
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 9px 14px;
+    color: #fff;
+    font-size: 12.5px;
+  }
+  .funnel-label { font-weight: 500; }
+  .funnel-note { font-size: 11px; opacity: 0.8; }
+
+  /* ── Stars chain ── */
+  .stars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    margin: 14px 0;
+  }
+  .star-item {
+    border-radius: 10px;
+    padding: 12px 14px;
+    border: 0.5px solid #e5e4e0;
+  }
+  .star-num {
+    font-size: 11px;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .star-name { font-size: 13px; font-weight: 500; margin-bottom: 4px; }
+  .star-desc { font-size: 12px; color: #666; line-height: 1.5; }
+
+  /* ── Big loop visual ── */
+  .loop-wrap { margin: 20px 0; position: relative; }
+  .loop-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  @media (max-width: 480px) { .loop-steps { grid-template-columns: repeat(2, 1fr); } }
+  .loop-step {
+    border-radius: 10px;
+    padding: 12px 14px;
+    text-align: center;
+    position: relative;
+  }
+  .loop-n {
+    font-size: 11px;
+    opacity: 0.6;
+    margin-bottom: 4px;
+  }
+  .loop-t {
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  /* ── Chain tabs (for 3 chains) ── */
+  .chain-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .chain-tab {
+    padding: 7px 14px;
+    border-radius: 20px;
+    border: 0.5px solid #e5e4e0;
+    font-size: 12.5px;
+    cursor: pointer;
+    background: #fff;
+    color: #666;
+    font-family: inherit;
+    transition: all 0.2s;
+  }
+  .chain-tab.active {
+    background: #534AB7;
+    color: #fff;
+    border-color: #534AB7;
+  }
+  .chain-content { display: none; }
+  .chain-content.active { display: block; }
+
+  /* ── Section title ── */
+  .sec-title {
+    font-size: 17px;
+    font-weight: 500;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+  }
+  .sec-sub {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 20px;
+  }
+
+  /* ── Highlight pill ── */
+  .pill {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  /* ── Section indicator ── */
+  .progress-bar {
+    height: 2px;
+    background: #EEEDFE;
+    border-radius: 2px;
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: #534AB7;
+    border-radius: 2px;
+    transition: width 0.4s;
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-tag">2026.07.02 · 给春尤的分享</div>
+  <h1>楚哥闭环课<br>我听到的 × 我想到的</h1>
+  <p class="hero-sub">楚哥说了什么 · 我自己迁移了什么 · 它们怎么形成可落地闭环</p>
+  <div class="hero-core">
+    <strong>核心一句话：</strong>把个人经验拆成工作流，再把工作流封装成 AI Skill，最后用引流课、诊断报告、陪跑交付、产品矩阵，把能力变成可展示、可交付、可售卖、可复制的闭环。
+  </div>
+</div>
+
+<div class="nav-wrap">
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="switchTab('s1', this)">楚哥主线</button>
+    <button class="tab-btn" onclick="switchTab('s2', this)">我的迁移</button>
+    <button class="tab-btn" onclick="switchTab('s3', this)">完整闭环</button>
+    <button class="tab-btn" onclick="switchTab('s4', this)">三条落地链</button>
+    <button class="tab-btn" onclick="switchTab('s5', this)">最想说的话</button>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- ── S1：楚哥主线 ── -->
+  <div id="s1" class="section active">
+    <p class="sec-title">楚哥讲了什么</p>
+    <p class="sec-sub">4 个核心观点，从"能力迁移"到"漏斗成交"</p>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="icon-dot" style="background:#534AB7"></div>
+        <h3>观点1：AI 放大"懂业务的人"</h3>
+      </div>
+      <p>楚哥反复强调，AI 真正能提效的前提不是会写 prompt，而是<strong>你本来就懂业务、懂审美、懂用户、懂交付</strong>。</p>
+      <div style="margin-top:12px">
+        <div style="font-size:12px;color:#888;margin-bottom:8px">设计师迁移路径示例</div>
+        <div class="flow">
+          <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div><div class="flow-connector"></div></div><div class="flow-text">审美判断 + 构图排版能力</div></div>
+          <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div><div class="flow-connector"></div></div><div class="flow-text">用户需求 → 画面策略</div></div>
+          <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div><div class="flow-connector"></div></div><div class="flow-text">AI 出图 → 内容测试</div></div>
+          <div class="flow-step"><div class="flow-line"><div class="flow-dot" style="background:#9FE1CB"></div></div><div class="flow-text">转化提升</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="icon-dot" style="background:#0F6E56"></div>
+        <h3>观点2：核心不是 prompt，是 Skill 封装</h3>
+      </div>
+      <p style="margin-bottom:12px">重点不是写一个很长的提示词，而是把一整套工作流封装成可复用的 Skill。</p>
+      <div class="flow">
+        <div class="flow-step"><div class="flow-line"><div class="flow-dot" style="background:#0F6E56"></div><div class="flow-connector" style="background:#9FE1CB"></div></div><div class="flow-text">口喷需求</div></div>
+        <div class="flow-step"><div class="flow-line"><div class="flow-dot" style="background:#0F6E56"></div><div class="flow-connector" style="background:#9FE1CB"></div></div><div class="flow-text">调用已封装 Skill</div></div>
+        <div class="flow-step"><div class="flow-line"><div class="flow-dot" style="background:#0F6E56"></div><div class="flow-connector" style="background:#9FE1CB"></div></div><div class="flow-text">AI 按业务流程自动生成</div></div>
+        <div class="flow-step"><div class="flow-line"><div class="flow-dot" style="background:#0F6E56"></div><div class="flow-connector" style="background:#9FE1CB"></div></div><div class="flow-text">人工微调</div></div>
+        <div class="flow-step"><div class="flow-line"><div class="flow-dot" style="background:#9FE1CB"></div></div><div class="flow-text">成品可用</div></div>
+      </div>
+      <div style="background:#E1F5EE;border-radius:8px;padding:10px 14px;margin-top:10px;font-size:12.5px;color:#085041">
+        真正值钱的：AI 长期理解你的业务、素材、风格和交付标准。
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="icon-dot" style="background:#BA7517"></div>
+        <h3>观点3：用户运营的闭环是"体验感"</h3>
+      </div>
+      <div class="flow">
+        <div class="flow-step"><div class="flow-line"><div class="flow-dot" style="background:#BA7517"></div><div class="flow-connector" style="background:#FAC775"></div></div><div class="flow-text">用户咨询</div></div>
+        <div class="flow-step"><div class="flow-line"><div class="flow-dot" style="background:#BA7517"></div><div class="flow-connector" style="background:#FAC775"></div></div><div class="flow-text">你认真沟通</div></div>
+        <div class="flow-step"><div class="flow-line"><div class="flow-dot" style="background:#BA7517"></div><div class="flow-connector" style="background:#FAC775"></div></div><div class="flow-text">AI 快速生成专属报告</div></div>
+        <div class="flow-step"><div class="flow-line"><div class="flow-dot" style="background:#BA7517"></div><div class="flow-connector" style="background:#FAC775"></div></div><div class="flow-text">用户感觉被认真对待 → 信任增强</div></div>
+        <div class="flow-step"><div class="flow-line"><div class="flow-dot" style="background:#EF9F27"></div></div><div class="flow-text">更容易成交或复购</div></div>
+      </div>
+      <div style="background:#FAEEDA;border-radius:8px;padding:10px 14px;margin-top:10px;font-size:12.5px;color:#633806">
+        看见 → 咨询 → 体验 → 信任 → 成交 → 复购
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="icon-dot" style="background:#993556"></div>
+        <h3>观点4：课程销售是漏斗设计</h3>
+      </div>
+      <p style="margin-bottom:14px">不是一上来卖课，而是先给价值、现场演示能力、用低价入口降低门槛。</p>
+      <div class="funnel">
+        <div class="funnel-tier" style="width:100%;background:#7F77DD"><span class="funnel-label">免费直播课</span><span class="funnel-note">引流 · 展示能力</span></div>
+        <div class="funnel-tier" style="width:90%;background:#534AB7"><span class="funnel-label">9.9 元一对一规划</span><span class="funnel-note">低价体验</span></div>
+        <div class="funnel-tier" style="width:78%;background:#3C3489"><span class="funnel-label">5 元定金锁优惠</span><span class="funnel-note">锁定意向</span></div>
+        <div class="funnel-tier" style="width:64%;background:#26215C"><span class="funnel-label">3999 元陪跑课程</span><span class="funnel-note">核心成交</span></div>
+        <div class="funnel-tier" style="width:50%;background:#1a1650"><span class="funnel-label">高阶课 / 企业咨询</span><span class="funnel-note">高客单</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── S2：我的迁移 ── -->
+  <div id="s2" class="section">
+    <p class="sec-title">我自己想到了什么</p>
+    <p class="sec-sub">听完之后发现：我手上的东西，已经具备被封装成产品的条件</p>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="icon-dot" style="background:#534AB7"></div>
+        <h3>电商/美妆经验 → AI 视觉策略能力</h3>
+      </div>
+      <p style="margin-bottom:12px">过去做过产品图、详情页、用户痛点、购买动机、竞品分析——这些不是零散经历，而是可以形成一条链：</p>
+      <div class="flow">
+        <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div><div class="flow-connector"></div></div><div class="flow-text">用户画像 + 竞品分析</div></div>
+        <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div><div class="flow-connector"></div></div><div class="flow-text">购买动机 → 视觉策略简报</div></div>
+        <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div><div class="flow-connector"></div></div><div class="flow-text">提示词 → AI 批量出图</div></div>
+        <div class="flow-step"><div class="flow-line"><div class="flow-dot" style="background:#9FE1CB"></div></div><div class="flow-text">A/B 测试 → 最高转化率方案</div></div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px">
+        <span class="pill" style="background:#EEEDFE;color:#534AB7">沉淀进简历</span>
+        <span class="pill" style="background:#E1F5EE;color:#0F6E56">做成求职作品集</span>
+        <span class="pill" style="background:#FAEEDA;color:#854F0B">可售卖外包服务</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="icon-dot" style="background:#0F6E56"></div>
+        <h3>我的星链项目 → 套用产品阶梯</h3>
+      </div>
+      <p style="margin-bottom:14px">楚哥的产品层级可以直接转成我的星链框架：</p>
+      <div class="stars-grid">
+        <div class="star-item" style="background:#EEEDFE;border-color:#CECBF6">
+          <div class="star-num" style="color:#534AB7">星链1</div>
+          <div class="star-name">AI 办公/店铺提升</div>
+          <div class="star-desc">即时零售 + AI 工具落地</div>
+        </div>
+        <div class="star-item" style="background:#E1F5EE;border-color:#9FE1CB">
+          <div class="star-num" style="color:#0F6E56">星链2</div>
+          <div class="star-name">幼小衔接/晚托</div>
+          <div class="star-desc">教培运营经验迁移</div>
+        </div>
+        <div class="star-item" style="background:#FAEEDA;border-color:#FAC775">
+          <div class="star-num" style="color:#854F0B">星链3</div>
+          <div class="star-name">美妆即时零售</div>
+          <div class="star-desc">副业在跑，持续优化</div>
+        </div>
+        <div class="star-item" style="background:#E6F1FB;border-color:#B5D4F4">
+          <div class="star-num" style="color:#185FA5">星链4</div>
+          <div class="star-name">AI 陪伴工具</div>
+          <div class="star-desc">产品思维 + 运营落地</div>
+        </div>
+        <div class="star-item" style="background:#EAF3DE;border-color:#C0DD97">
+          <div class="star-num" style="color:#3B6D11">星链5</div>
+          <div class="star-name">AI Native 运营培训</div>
+          <div class="star-desc">楚哥方法 + 我的案例</div>
+        </div>
+        <div class="star-item" style="background:#FAECE7;border-color:#F5C4B3">
+          <div class="star-num" style="color:#993C1D">星链6</div>
+          <div class="star-name">职业培训师合作</div>
+          <div class="star-desc">GYB + 电商师 + AI 课</div>
+        </div>
+      </div>
+      <div style="background:#f7f6f3;border-radius:8px;padding:10px 14px;margin-top:4px;font-size:12.5px;color:#555">
+        每条星链不是单点项目，而是可以做成一条完整的产品链。
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="icon-dot" style="background:#BA7517"></div>
+        <h3>培训师副业 → 升级成 AI Native 培训</h3>
+      </div>
+      <div class="compare-grid">
+        <div class="cg-item cg-chu">
+          <div class="cg-label">楚哥讲的</div>
+          <div class="cg-content">Skill 封装、诊断报告、销售漏斗、六力模型</div>
+        </div>
+        <div class="cg-item cg-me">
+          <div class="cg-label">我的迁移</div>
+          <div class="cg-content">变成培训课程素材，连接星链5 + 星链6</div>
+        </div>
+      </div>
+      <div class="flow" style="margin-top:14px">
+        <div class="flow-step"><div class="flow-line"><div class="flow-dot" style="background:#BA7517"></div><div class="flow-connector" style="background:#FAC775"></div></div><div class="flow-text">人机协同心法</div></div>
+        <div class="flow-step"><div class="flow-line"><div class="flow-dot" style="background:#BA7517"></div><div class="flow-connector" style="background:#FAC775"></div></div><div class="flow-text">Skill 封装方法论</div></div>
+        <div class="flow-step"><div class="flow-line"><div class="flow-dot" style="background:#BA7517"></div><div class="flow-connector" style="background:#FAC775"></div></div><div class="flow-text">AI 运营 SOP</div></div>
+        <div class="flow-step"><div class="flow-line"><div class="flow-dot" style="background:#EF9F27"></div></div><div class="flow-text">职业培训 / 企业内训</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── S3：完整闭环 ── -->
+  <div id="s3" class="section">
+    <p class="sec-title">合在一起的完整闭环</p>
+    <p class="sec-sub">"楚哥说的"和"我想到的"刚好互相对应</p>
+
+    <div class="loop-wrap">
+      <div class="loop-steps">
+        <div class="loop-step" style="background:#EEEDFE">
+          <div class="loop-n" style="color:#7F77DD">01</div>
+          <div class="loop-t" style="color:#3C3489">听课/项目获得经验</div>
+        </div>
+        <div class="loop-step" style="background:#E1F5EE">
+          <div class="loop-n" style="color:#1D9E75">02</div>
+          <div class="loop-t" style="color:#085041">拆出方法论和 SOP</div>
+        </div>
+        <div class="loop-step" style="background:#FAEEDA">
+          <div class="loop-n" style="color:#EF9F27">03</div>
+          <div class="loop-t" style="color:#633806">封装成 Skill / 模板</div>
+        </div>
+        <div class="loop-step" style="background:#E6F1FB">
+          <div class="loop-n" style="color:#378ADD">04</div>
+          <div class="loop-t" style="color:#042C53">用在星链产品交付</div>
+        </div>
+        <div class="loop-step" style="background:#EAF3DE">
+          <div class="loop-n" style="color:#639922">05</div>
+          <div class="loop-t" style="color:#173404">形成案例和作品集</div>
+        </div>
+        <div class="loop-step" style="background:#FAECE7">
+          <div class="loop-n" style="color:#D85A30">06</div>
+          <div class="loop-t" style="color:#4A1B0C">内容/IP 吸引用户</div>
+        </div>
+        <div class="loop-step" style="background:#FBEAF0">
+          <div class="loop-n" style="color:#D4537E">07</div>
+          <div class="loop-t" style="color:#4B1528">低价诊断建立信任</div>
+        </div>
+        <div class="loop-step" style="background:#EEEDFE">
+          <div class="loop-n" style="color:#7F77DD">08</div>
+          <div class="loop-t" style="color:#3C3489">陪跑/外包/培训变现</div>
+        </div>
+        <div class="loop-step" style="background:#E1F5EE">
+          <div class="loop-n" style="color:#1D9E75">09</div>
+          <div class="loop-t" style="color:#085041">沉淀成新的 Skill ↩</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin:20px 0 8px;font-size:13px;font-weight:500;color:#444">楚哥 vs 我的对应关系</div>
+    <div style="overflow-x:auto">
+      <table style="width:100%;border-collapse:collapse;font-size:12.5px">
+        <thead>
+          <tr style="background:#f7f6f3">
+            <th style="padding:9px 12px;text-align:left;border-bottom:0.5px solid #e5e4e0;font-weight:500;color:#888;font-size:11.5px">环节</th>
+            <th style="padding:9px 12px;text-align:left;border-bottom:0.5px solid #e5e4e0;font-weight:500;color:#534AB7;font-size:11.5px">楚哥说的</th>
+            <th style="padding:9px 12px;text-align:left;border-bottom:0.5px solid #e5e4e0;font-weight:500;color:#0F6E56;font-size:11.5px">我的迁移</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:0.5px solid #f0efe8">
+            <td style="padding:9px 12px;color:#666">能力来源</td>
+            <td style="padding:9px 12px">旧能力迁移到 AI</td>
+            <td style="padding:9px 12px">电商/美妆/教培经验可迁移</td>
+          </tr>
+          <tr style="background:#fafaf8;border-bottom:0.5px solid #f0efe8">
+            <td style="padding:9px 12px;color:#666">方法核心</td>
+            <td style="padding:9px 12px">封装工作流，不写长 prompt</td>
+            <td style="padding:9px 12px">星链/简历/培训全封装成 SOP</td>
+          </tr>
+          <tr style="border-bottom:0.5px solid #f0efe8">
+            <td style="padding:9px 12px;color:#666">用户体验</td>
+            <td style="padding:9px 12px">10 分钟出专属报告</td>
+            <td style="padding:9px 12px">星链低价问诊/面试复盘报告</td>
+          </tr>
+          <tr style="background:#fafaf8;border-bottom:0.5px solid #f0efe8">
+            <td style="padding:9px 12px;color:#666">销售漏斗</td>
+            <td style="padding:9px 12px">免费课→9.9→定金→3999</td>
+            <td style="padding:9px 12px">免费内容→低价诊断→陪跑→定制</td>
+          </tr>
+          <tr style="border-bottom:0.5px solid #f0efe8">
+            <td style="padding:9px 12px;color:#666">产品矩阵</td>
+            <td style="padding:9px 12px">短视频/运营/AI课/企咨</td>
+            <td style="padding:9px 12px">星链1-6/培训师/AI物料/OPC</td>
+          </tr>
+          <tr>
+            <td style="padding:9px 12px;color:#666">个人品牌</td>
+            <td style="padding:9px 12px">用案例和实操证明能力</td>
+            <td style="padding:9px 12px">作品集/简历/IP 内容吸引客户</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── S4：三条落地链 ── -->
+  <div id="s4" class="section">
+    <p class="sec-title">后续可以落地的三条链</p>
+    <p class="sec-sub">每条链都有明确目的和行动路径</p>
+
+    <div class="chain-tabs">
+      <button class="chain-tab active" onclick="switchChain('ca', this)">A · 求职展示链</button>
+      <button class="chain-tab" onclick="switchChain('cb', this)">B · 星链变现链</button>
+      <button class="chain-tab" onclick="switchChain('cc', this)">C · 培训师/IP 链</button>
+    </div>
+
+    <div id="ca" class="chain-content active">
+      <div class="card">
+        <div class="card-header">
+          <div class="icon-dot" style="background:#534AB7"></div>
+          <h3>链条A：求职展示链</h3>
+        </div>
+        <div style="background:#EEEDFE;border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:12.5px;color:#3C3489">
+          目的：让别人看到我不是"会工具"，而是"会用 AI 做运营闭环"
+        </div>
+        <div class="flow">
+          <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div><div class="flow-connector"></div></div><div class="flow-text">楚哥六力模型 / AI Skill 方法论</div></div>
+          <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div><div class="flow-connector"></div></div><div class="flow-text">我的简历能力重写</div></div>
+          <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div><div class="flow-connector"></div></div><div class="flow-text">电商视觉策略案例</div></div>
+          <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div><div class="flow-connector"></div></div><div class="flow-text">面试逐字稿表达</div></div>
+          <div class="flow-step"><div class="flow-line"><div class="flow-dot" style="background:#9FE1CB"></div></div><div class="flow-text">求职作品集</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="cb" class="chain-content">
+      <div class="card">
+        <div class="card-header">
+          <div class="icon-dot" style="background:#0F6E56"></div>
+          <h3>链条B：星链变现链</h3>
+        </div>
+        <div style="background:#E1F5EE;border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:12.5px;color:#085041">
+          目的：把星链从想法变成可报价、可交付、可复购的产品
+        </div>
+        <div class="flow">
+          <div class="flow-step"><div class="flow-line"><div class="flow-dot" style="background:#0F6E56"></div><div class="flow-connector" style="background:#9FE1CB"></div></div><div class="flow-text">免费内容展示</div></div>
+          <div class="flow-step"><div class="flow-line"><div class="flow-dot" style="background:#0F6E56"></div><div class="flow-connector" style="background:#9FE1CB"></div></div><div class="flow-text">9.9 元诊断</div></div>
+          <div class="flow-step"><div class="flow-line"><div class="flow-dot" style="background:#0F6E56"></div><div class="flow-connector" style="background:#9FE1CB"></div></div><div class="flow-text">诊断报告交付</div></div>
+          <div class="flow-step"><div class="flow-line"><div class="flow-dot" style="background:#0F6E56"></div><div class="flow-connector" style="background:#9FE1CB"></div></div><div class="flow-text">88 / 599 元工具包或单点服务</div></div>
+          <div class="flow-step"><div class="flow-line"><div class="flow-dot" style="background:#0F6E56"></div><div class="flow-connector" style="background:#9FE1CB"></div></div><div class="flow-text">陪跑 / 外包</div></div>
+          <div class="flow-step"><div class="flow-line"><div class="flow-dot" style="background:#5DCAA5"></div></div><div class="flow-text">Skill 封装 / 整套交付</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="cc" class="chain-content">
+      <div class="card">
+        <div class="card-header">
+          <div class="icon-dot" style="background:#BA7517"></div>
+          <h3>链条C：培训师 / IP 链</h3>
+        </div>
+        <div style="background:#FAEEDA;border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:12.5px;color:#633806">
+          目的：把培训师资格、AI 能力、运营经验、星链产品连成一条长期副业线
+        </div>
+        <div class="flow">
+          <div class="flow-step"><div class="flow-line"><div class="flow-dot" style="background:#BA7517"></div><div class="flow-connector" style="background:#FAC775"></div></div><div class="flow-text">人机协同心法</div></div>
+          <div class="flow-step"><div class="flow-line"><div class="flow-dot" style="background:#BA7517"></div><div class="flow-connector" style="background:#FAC775"></div></div><div class="flow-text">Skill 封装课</div></div>
+          <div class="flow-step"><div class="flow-line"><div class="flow-dot" style="background:#BA7517"></div><div class="flow-connector" style="background:#FAC775"></div></div><div class="flow-text">AI Native 运营培训</div></div>
+          <div class="flow-step"><div class="flow-line"><div class="flow-dot" style="background:#BA7517"></div><div class="flow-connector" style="background:#FAC775"></div></div><div class="flow-text">学员诊断报告</div></div>
+          <div class="flow-step"><div class="flow-line"><div class="flow-dot" style="background:#BA7517"></div><div class="flow-connector" style="background:#FAC775"></div></div><div class="flow-text">陪跑交付</div></div>
+          <div class="flow-step"><div class="flow-line"><div class="flow-dot" style="background:#EF9F27"></div></div><div class="flow-text">职校 / 企业合作</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── S5：最想说的话 ── -->
+  <div id="s5" class="section">
+    <p class="sec-title">最想和春尤说的重点</p>
+    <p class="sec-sub">这不是一门普通的课，而是一面镜子</p>
+
+    <div class="quote-block">
+      <strong>一个人的经验如果不整理，就只是经历；</strong><br>
+      如果整理成 SOP，就是能力；<br>
+      如果封装成 Skill，就是资产；<br>
+      如果能交付给别人，就是产品；<br>
+      <strong>如果能持续吸引人来买，就是商业闭环。</strong>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <div class="card-header">
+        <div class="icon-dot" style="background:#534AB7"></div>
+        <h3>我现在要做的事</h3>
+      </div>
+      <p style="margin-bottom:14px">把自己过去做过的事情，从"散的经历"变成：</p>
+      <div class="flow">
+        <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div><div class="flow-connector"></div></div><div class="flow-text" style="color:#534AB7;font-weight:500">经历</div></div>
+        <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div><div class="flow-connector"></div></div><div class="flow-text">→ 方法</div></div>
+        <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div><div class="flow-connector"></div></div><div class="flow-text">→ SOP</div></div>
+        <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div><div class="flow-connector"></div></div><div class="flow-text">→ Skill</div></div>
+        <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div><div class="flow-connector"></div></div><div class="flow-text">→ 案例</div></div>
+        <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div><div class="flow-connector"></div></div><div class="flow-text">→ 产品</div></div>
+        <div class="flow-step"><div class="flow-line"><div class="flow-dot"></div><div class="flow-connector"></div></div><div class="flow-text">→ 交付</div></div>
+        <div class="flow-step"><div class="flow-line"><div class="flow-dot" style="background:#9FE1CB"></div></div><div class="flow-text" style="color:#085041;font-weight:500">→ 复购 / 转介绍</div></div>
+      </div>
+    </div>
+
+    <div class="card" style="background:#3C3489;border-color:#534AB7">
+      <p style="color:rgba(255,255,255,0.7);font-size:12.5px;margin-bottom:10px">最终结论</p>
+      <p style="color:#fff;font-size:14px;line-height:1.8">
+        我现在不是在单纯整理一门课，而是在用这门课<strong style="color:#FAC775">反向整理我自己</strong>，把我变成一个<strong style="color:#FAC775">可被理解、可被信任、可被购买的产品</strong>。
+      </p>
+      <div style="margin-top:14px;display:flex;flex-wrap:wrap;gap:8px">
+        <span style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.85);padding:4px 12px;border-radius:20px;font-size:12px">AI 作图 → 电商视觉策略</span>
+        <span style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.85);padding:4px 12px;border-radius:20px;font-size:12px">用户沟通 → 诊断报告</span>
+        <span style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.85);padding:4px 12px;border-radius:20px;font-size:12px">星链项目 → 产品阶梯</span>
+        <span style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.85);padding:4px 12px;border-radius:20px;font-size:12px">培训师 → AI Native 课</span>
+        <span style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.85);padding:4px 12px;border-radius:20px;font-size:12px">这些能力 → 简历作品集</span>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:32px;padding:20px;color:#999;font-size:12px">
+      整理于 2026.07.02 · 朱詠怡
+    </div>
+  </div>
+
+</div>
+
+<script>
+function switchTab(id, el) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  el.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function switchChain(id, el) {
+  document.querySelectorAll('.chain-content').forEach(c => c.classList.remove('active'));
+  document.querySelectorAll('.chain-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  el.classList.add('active');
+}
+</script>
+</body>
+</html>
